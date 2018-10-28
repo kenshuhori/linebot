@@ -16,8 +16,6 @@ function init () {
 function initProperties() {
     var fs = require("fs");
     var json = JSON.parse(fs.readFileSync('properties.json', 'utf8'));
-    console.log(json.channelSecret);
-    console.log(json.channelAccessToken);
     config.channelSecret = json.channelSecret;
     config.channelAccessToken = json.channelAccessToken;
 }
@@ -29,6 +27,11 @@ app.post('/webhook', line.middleware(config), (req, res) => {
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
+});
+
+app.get('/', line.middleware(config), (req, res) => {
+    console.log(req.body.events);
+    res.send('Hello Hori!');
 });
 
 const client = new line.Client(config);
