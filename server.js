@@ -23,7 +23,9 @@ function initProperties() {
 init();
 
 app.post('/webhook', line.middleware(config), (req, res) => {
+    console.log('here 1');
     console.log(req.body.events);
+    console.log('here 2');
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
@@ -38,8 +40,10 @@ const client = new line.Client(config);
 
 function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
+        console.log('unsupported message comming...');
         return Promise.resolve(null);
     }
+    console.log('try to reply!');
     return client.replyMessage(event.replyToken, {
         type: 'text',
         test: event.message.text
