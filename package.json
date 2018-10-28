@@ -15,5 +15,9 @@
   "bugs": {
     "url": "https://github.com/kenshuhori/linebot/issues"
   },
-  "homepage": "https://github.com/kenshuhori/linebot#readme"
+  "homepage": "https://github.com/kenshuhori/linebot#readme",
+  "dependencies": {
+    "@line/bot-sdk": "^6.3.0",
+    "express": "^4.16.4"
+  }
 }
