@@ -1,0 +1,19 @@
+{
+  "name": "linebot",
+  "version": "1.0.0",
+  "description": "development for linebot 'pompom remocon'",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kenshuhori/linebot.git"
+  },
+  "author": "kenshuhori",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kenshuhori/linebot/issues"
+  },
+  "homepage": "https://github.com/kenshuhori/linebot#readme"
+}
