@@ -29,10 +29,10 @@ app.post('/webhook', line.middleware(config), (req, res) => {
         .then((result) => res.json(result));
 });
 
-app.get('/', line.middleware(config), (req, res) => {
-    console.log(req.body.events);
-    res.send('Hello Hori!');
-});
+// app.get('/', line.middleware(config), (req, res) => {
+//     console.log(req.body.events);
+//     res.send('Hello Hori!');
+// });
 
 const client = new line.Client(config);
 
