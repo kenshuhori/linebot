@@ -24,6 +24,10 @@ init();
 
 app.post('/webhook', line.middleware(config), (req, res) => {
     console.log(req.body.events);
+    for (var e in req.body.events) {
+        console.log('userId : ' + e.source.userId);
+        console.log('displayName : ' + e.displayName);
+    }
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
