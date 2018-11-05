@@ -43,9 +43,11 @@ function handleEvent(event) {
         return Promise.resolve(null);
     }
     if (event.message.text === 'グループ') {
+        console.log('グループグループ');
         pushMessage(groupId);
     }
     if (event.message.text === 'ほり') {
+        console.log('ほりほり');
         pushMessage(cokekocoo);
     }
     console.log(event.source.type);
