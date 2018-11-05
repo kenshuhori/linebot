@@ -76,6 +76,7 @@ function pushMessage(id) {
         'headers': headers,
         'payload': JSON.stringify(postData)
     };
+    var response = UrlFetchApp.fetch(url, options);
 }
 
 app.listen(PORT);
