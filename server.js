@@ -59,24 +59,27 @@ function handleEvent(event) {
 }
 
 function pushMessage(id) {
-    var postData = {
-        'to': id,
-        'messages': [{
-            'type': 'text',
-            'text': 'hello kenshu.'
-        }]
-    };
-    var url = 'https://api.line.me/v2/bot/message/push';
-    var headers = {
-        'Content-Type': 'application/json',
-        'Authorization': 'Bearer ' + config.channelAccessToken
-    };
-    var options = {
-        'method': 'post',
-        'headers': headers,
-        'payload': JSON.stringify(postData)
-    };
-    var response = UrlFetchApp.fetch(url, options);
+    client.pushMessage(id, {
+        type: 'text',
+        text: 'ポムポムbotから発信！'
+    })
+    // var postData = {
+    //     'to': id,
+    //     'messages': [{
+    //         'type': 'text',
+    //         'text': 'hello kenshu.'
+    //     }]
+    // };
+    // var url = 'https://api.line.me/v2/bot/message/push';
+    // var headers = {
+    //     'Content-Type': 'application/json',
+    //     'Authorization': 'Bearer ' + config.channelAccessToken
+    // };
+    // var options = {
+    //     'method': 'post',
+    //     'headers': headers,
+    //     'payload': JSON.stringify(postData)
+    // };
 }
 
 app.listen(PORT);
