@@ -8,6 +8,7 @@ const config = {
     channelAccessToken: ''
 };
 const cokekocoo = 'Ud94926cc8fa813875e2074d27c1c0180';
+const groupId = 'R30834385e949ba3ccf4815d787f2c1da';
 const app = express();
 
 function init() {
@@ -41,6 +42,12 @@ function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
         return Promise.resolve(null);
     }
+    if (event.message.text === 'グループ') {
+        pushMessage(groupId);
+    }
+    if (event.message.text === 'ほり') {
+        pushMessage(cokekocoo);
+    }
     console.log(event.source.type);
     console.log(event.source.userId);
     return client.replyMessage(event.replyToken, {
@@ -49,9 +56,9 @@ function handleEvent(event) {
     });
 }
 
-function pushMessage() {
+function pushMessage(id) {
     var postData = {
-        'to': cokekocoo,
+        'to': id,
         'messages': [{
             'type': 'text',
             'text': 'hello kenshu.'
