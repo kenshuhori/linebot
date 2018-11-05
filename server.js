@@ -7,6 +7,7 @@ const config = {
     channelSecret: '',
     channelAccessToken: ''
 };
+const cokekocoo = 'Ud94926cc8fa813875e2074d27c1c0180';
 const app = express();
 
 function init() {
@@ -24,10 +25,6 @@ init();
 
 app.post('/webhook', line.middleware(config), (req, res) => {
     console.log(req.body.events);
-    for (var e in req.body.events) {
-        console.log('userId : ' + e.source.userId);
-        console.log('displayName : ' + e.displayName);
-    }
     Promise
         .all(req.body.events.map(handleEvent))
         .then((result) => res.json(result));
@@ -44,10 +41,32 @@ function handleEvent(event) {
     if (event.type !== 'message' || event.message.type !== 'text') {
         return Promise.resolve(null);
     }
+    console.log(event.source.type);
+    console.log(event.source.userId);
     return client.replyMessage(event.replyToken, {
         type: 'text',
         text: event.message.text
     });
+}
+
+function pushMessage() {
+    var postData = {
+        'to': cokekocoo,
+        'messages': [{
+            'type': 'text',
+            'text': 'hello kenshu.'
+        }]
+    };
+    var url = 'https://api.line.me/v2/bot/message/push';
+    var headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + config.channelAccessToken
+    };
+    var options = {
+        'method': 'post',
+        'headers': headers,
+        'payload': JSON.stringify(postData)
+    };
 }
 
 app.listen(PORT);
